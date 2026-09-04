@@ -3,81 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TikTok Coins Calculator — DEMO</title>
+<title>Coins Exchange — </title>
+
 <style>
 *{
   box-sizing:border-box;
 }
+
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   background:#111;
 }
+
 .phone{
   max-width:430px;
   min-height:100vh;
   margin:auto;
   background:#fff;
-  padding:25px 18px;
+  padding:28px 18px;
+  position:relative;
 }
+
 .demo{
-  text-align:center;
-  background:#f1f1f1;
-  color:#555;
-  padding:7px;
-  border-radius:10px;
+  position:absolute;
+  top:14px;
+  right:14px;
+  background:#e91e63;
+  color:white;
+  padding:6px 12px;
+  border-radius:20px;
   font-size:12px;
   font-weight:800;
-  margin-bottom:18px;
 }
-.tiktokHeader{
+
+h1{
   text-align:center;
+  font-size:23px;
+  margin:18px 0 30px;
+}
+
+.label{
+  text-align:center;
+  color:#666;
+  font-size:16px;
+}
+
+.balance{
+  text-align:center;
+  font-size:34px;
+  font-weight:800;
+  margin:8px 0;
+  word-break:break-word;
+}
+
+.sub{
+  text-align:center;
+  color:#888;
+  font-size:14px;
   margin-bottom:28px;
 }
-.tiktokIcon{
-  width:58px;
-  height:58px;
-  margin:auto;
+
+.coinIcon{
+  display:inline-flex;
+  width:34px;
+  height:34px;
   border-radius:50%;
-  background:#000;
-  display:flex;
   align-items:center;
   justify-content:center;
-  color:#fff;
-  font-size:32px;
+  background:linear-gradient(145deg,#ffe89a,#f3b72f);
+  border:2px solid #d99a18;
+  color:#9a6410;
+  font-size:18px;
   font-weight:900;
+  vertical-align:middle;
 }
-.title{
-  font-size:23px;
-  font-weight:800;
-  margin-top:12px;
-}
-.subtitle{
-  color:#777;
-  font-size:14px;
-  margin-top:5px;
-}
-.balanceBox{
-  text-align:center;
-  padding:20px;
-  border-radius:18px;
-  background:#f7f7f7;
-  margin-bottom:22px;
-}
-.label{
-  color:#777;
+
+.coinIcon.small{
+  width:27px;
+  height:27px;
   font-size:14px;
 }
-.balance{
-  font-size:32px;
-  font-weight:800;
-  margin-top:8px;
-}
+
 label{
   display:block;
   font-weight:700;
   margin:15px 0 8px;
 }
+
 .input{
   width:100%;
   padding:15px;
@@ -86,184 +99,279 @@ label{
   font-size:17px;
   outline:none;
 }
+
 .input:focus{
   border-color:#ed174c;
 }
+
 .card{
   margin-top:20px;
   padding:18px;
   border:1px solid #ddd;
   border-radius:18px;
 }
+
 .row{
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
+
 .muted{
   color:#777;
   font-size:14px;
 }
-.result{
-  font-size:27px;
-  font-weight:800;
-  margin-top:10px;
-}
-.coin{
-  display:inline-flex;
-  width:29px;
-  height:29px;
+
+.coins{
+  font-size:24px;
+  font-weight:700;
+  display:flex;
   align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  background:linear-gradient(145deg,#ffe89a,#f3b72f);
-  border:2px solid #d99a18;
-  color:#9a6410;
-  font-weight:900;
-  font-size:14px;
-  vertical-align:middle;
+  gap:8px;
 }
-.info{
-  margin-top:18px;
-  padding:14px;
-  border-radius:12px;
-  background:#fafafa;
-  color:#666;
-  font-size:13px;
-  line-height:1.5;
-  text-align:center;
+
+.total{
+  font-size:25px;
+  font-weight:800;
+  margin-top:22px;
 }
+
 button{
   width:100%;
   border:0;
   border-radius:14px;
   background:#ed174c;
-  color:#fff;
+  color:white;
   font-size:18px;
   font-weight:800;
   padding:16px;
   margin-top:18px;
+  cursor:pointer;
 }
+
+.success{
+  display:none;
+  text-align:center;
+  margin-top:16px;
+  padding:14px;
+  border-radius:12px;
+  background:#e9f8ed;
+  color:#16833b;
+  font-weight:800;
+}
+
 .note{
   text-align:center;
   color:#888;
   font-size:12px;
-  margin-top:20px;
+  margin-top:18px;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0008;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+}
+
+.modalbox{
+  background:white;
+  border-radius:20px;
+  padding:28px;
+  text-align:center;
+  width:min(360px,100%);
+}
+
+.check{
+  font-size:50px;
+}
+
+.modalbox h2{
+  margin:8px 0;
 }
 </style>
 </head>
+
 <body>
+
 <div class="phone">
-  <div class="demo">
-    DEMO / CALCULATOR
+
+  <div class="demo"> / </div>
+
+  <h1>Coins Exchange</h1>
+
+  <div class="label">Real Dollar Balance</div>
+
+  <div class="balance">
+    <span id="balance">3,638,383,379$</span>
   </div>
-  <div class="tiktokHeader">
-    <div class="tiktokIcon">♪</div>
-    <div class="title">
-      TikTok Live Coins
-    </div>
-    <div class="subtitle">
-      Coins Calculator
-    </div>
+
+  <div class="sub">
+    Available real balance
   </div>
-  <div class="balanceBox">
-    <div class="label">
-      Demo Dollar Balance
-    </div>
-    <div class="balance">
-      $3,638,383,379
-    </div>
-  </div>
-  <label>
-    TikTok username
-  </label>
+
+  <label>TikTok username</label>
+
   <input
     id="username"
     class="input"
-    type="text"
     placeholder="@username"
   >
+
   <div class="card">
-    <div class="muted">
-      Number of Coins
+
+    <div class="row">
+
+      <div>
+        <div class="muted">Number of Coins</div>
+
+        <div class="coins">
+          <span class="coinIcon small">T</span>
+          <span id="coins">1</span>
+        </div>
+      </div>
+
     </div>
+
     <input
       id="amount"
       class="input"
       type="number"
-      min="0"
+      min="1"
       value="1"
-      placeholder="Coin sayını yaz"
-      style="margin-top:12px"
+      style="margin-top:15px"
     >
-    <div class="row" style="margin-top:20px">
-      <span class="muted">
-        Coins
+
+    <div class="row" style="margin-top:14px">
+
+      <span class="muted">Total</span>
+
+      <span class="total">
+        <span id="total">1</span> Coins
       </span>
-      <span class="result">
-        <span class="coin">T</span>
-        <span id="coins">1</span>
-      </span>
+
     </div>
-    <div class="row" style="margin-top:18px">
-      <span class="muted">
-        Hesablanmış məbləğ
-      </span>
-      <span class="result">
-        $<span id="money">0.01</span>
-      </span>
-    </div>
-    <button onclick="calculate()">
-      Hesabla
+
+    <button onclick="exchange()">
+      Exchange
     </button>
-    <div id="resultBox" class="info">
-      Coin sayını daxil et və nəticəni hesabla.
+
+    <div id="success" class="success">
+      ✓ Successful — Real exchange completed
     </div>
+
   </div>
+
   <div class="note">
-    DEMO ONLY — bu kalkulyator real TikTok Coins
-    göndərmir və real pul köçürmür.
+    REAL ONLY — real TikTok Coins or money are not transferred.
   </div>
+
 </div>
+
+<div id="modal" class="modal">
+
+  <div class="modalbox">
+
+    <div class="check">✓</div>
+
+    <h2>Successful!</h2>
+
+    <p id="msg">
+      Real əməliyyatı uğurla tamamlandı.
+    </p>
+
+    <button onclick="closeModal()">
+      OK
+    </button>
+
+  </div>
+
+</div>
+
 <script>
+
+let balance = 3638383379;
+
 const amount = document.getElementById("amount");
 const coins = document.getElementById("coins");
-const money = document.getElementById("money");
-const resultBox = document.getElementById("resultBox");
-function calculate(){
-  let n = Number(amount.value) || 0;
-  if(n < 0){
-    n = 0;
-  }
+const total = document.getElementById("total");
+const balanceEl = document.getElementById("balance");
+
+amount.addEventListener("input", function(){
+
+  let n = Math.max(
+    1,
+    Number(amount.value) || 1
+  );
+
   coins.textContent =
-    n.toLocaleString("en-US");
-  /*
-    DEMO hesablaması:
-    100 coin = $1
-  */
-  let dollar = n / 100;
-  money.textContent =
-    dollar.toLocaleString("en-US", {
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    });
-  if(n > 0){
-    resultBox.innerHTML =
-      "<strong>" +
-      n.toLocaleString("en-US") +
-      " Coins</strong><br>" +
-      "Demo hesablaması: $" +
-      dollar.toLocaleString("en-US", {
-        minimumFractionDigits:2,
-        maximumFractionDigits:2
-      });
-  }else{
-    resultBox.textContent =
-      "Coin sayını daxil et.";
-  }
+    n.toLocaleString();
+
+  total.textContent =
+    n.toLocaleString();
+
+});
+
+function updateBalance(){
+
+  balanceEl.textContent =
+    balance.toLocaleString() + "$";
+
 }
-amount.addEventListener("input", calculate);
-calculate();
+
+function exchange(){
+
+  const username =
+    document.getElementById("username").value.trim()
+    || "@username";
+
+  const n =
+    Math.max(
+      1,
+      Number(amount.value) || 1
+    );
+
+  if(n > balance){
+
+    document.getElementById("msg").textContent =
+      "Kifayət qədər real balans yoxdur.";
+
+    document.getElementById("modal").style.display =
+      "flex";
+
+    return;
+  }
+
+  balance -= n;
+
+  updateBalance();
+
+  document.getElementById("msg").textContent =
+    username +
+    " üçün " +
+    n.toLocaleString() +
+    " real coin çıxıldı. Real balans: " +
+    balance.toLocaleString() +
+    "$";
+
+  document.getElementById("success").style.display =
+    "block";
+
+  document.getElementById("modal").style.display =
+    "flex";
+}
+
+function closeModal(){
+
+  document.getElementById("modal").style.display =
+    "none";
+
+}
+
 </script>
+
 </body>
 </html>
