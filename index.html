@@ -54,6 +54,7 @@ h1{
   font-size:34px;
   font-weight:800;
   margin:8px 0;
+  word-break:break-word;
 }
 
 .sub{
@@ -99,6 +100,10 @@ label{
   outline:none;
 }
 
+.input:focus{
+  border-color:#ed174c;
+}
+
 .card{
   margin-top:20px;
   padding:18px;
@@ -122,6 +127,7 @@ label{
   font-weight:700;
   display:flex;
   align-items:center;
+  gap:8px;
 }
 
 .total{
@@ -140,6 +146,7 @@ button{
   font-weight:800;
   padding:16px;
   margin-top:18px;
+  cursor:pointer;
 }
 
 .success{
@@ -196,11 +203,10 @@ button{
 
   <h1>Coins Exchange</h1>
 
-  <div class="label">Demo Coins Balance</div>
+  <div class="label">Demo Dollar Balance</div>
 
   <div class="balance">
-    <span id="balance">1,000,000</span>
-    <span class="coinIcon">T</span>
+    <span id="balance">3,638,383,379$</span>
   </div>
 
   <div class="sub">
@@ -260,7 +266,7 @@ button{
   </div>
 
   <div class="note">
-    DEMO ONLY — real TikTok Coins are not transferred.
+    DEMO ONLY — real TikTok Coins or money are not transferred.
   </div>
 
 </div>
@@ -289,16 +295,12 @@ button{
 
 <script>
 
-let balance = 1000000;
+let balance = 3638383379;
 
 const amount = document.getElementById("amount");
-
 const coins = document.getElementById("coins");
-
 const total = document.getElementById("total");
-
 const balanceEl = document.getElementById("balance");
-
 
 amount.addEventListener("input", function(){
 
@@ -316,6 +318,14 @@ amount.addEventListener("input", function(){
 });
 
 
+function updateBalance(){
+
+  balanceEl.textContent =
+    balance.toLocaleString() + "$";
+
+}
+
+
 function exchange(){
 
   const username =
@@ -328,11 +338,10 @@ function exchange(){
       Number(amount.value) || 1
     );
 
-
   if(n > balance){
 
     document.getElementById("msg").textContent =
-      "Kifayət qədər demo coin yoxdur.";
+      "Kifayət qədər demo balans yoxdur.";
 
     document.getElementById("modal").style.display =
       "flex";
@@ -340,30 +349,23 @@ function exchange(){
     return;
   }
 
-
   balance -= n;
 
-
-  balanceEl.textContent =
-    balance.toLocaleString();
-
+  updateBalance();
 
   document.getElementById("msg").textContent =
     username +
     " üçün " +
     n.toLocaleString() +
-    " demo coin çıxıldı. Qalan balans: " +
+    " demo coin çıxıldı. Demo balans: " +
     balance.toLocaleString() +
-    " coin.";
-
+    "$";
 
   document.getElementById("success").style.display =
     "block";
 
-
   document.getElementById("modal").style.display =
     "flex";
-
 }
 
 
