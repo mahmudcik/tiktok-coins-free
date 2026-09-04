@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coins Exchange — </title>
+<title>Coins Exchange</title>
 
 <style>
 *{
@@ -23,6 +23,33 @@ body{
   background:#fff;
   padding:28px 18px;
   position:relative;
+}
+
+/* TikTok başlıq */
+.tiktokHeader{
+  text-align:center;
+  margin:5px 0 25px;
+}
+
+.tiktokLogo{
+  width:54px;
+  height:54px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#000;
+  color:#fff;
+  font-size:30px;
+  font-weight:900;
+  font-family:Arial,sans-serif;
+}
+
+.tiktokTitle{
+  margin-top:10px;
+  font-size:22px;
+  font-weight:800;
 }
 
 .demo{
@@ -199,18 +226,23 @@ button{
 
 <div class="phone">
 
-  <div class="demo"> / </div>
+  <div class="tiktokHeader">
+    <div class="tiktokLogo">♪</div>
+    <div class="tiktokTitle">TikTok Live Coins Free</div>
+  </div>
+
+  <div class="demo">DEMO</div>
 
   <h1>Coins Exchange</h1>
 
-  <div class="label">Real Dollar Balance</div>
+  <div class="label">Demo Dollar Balance</div>
 
   <div class="balance">
     <span id="balance">3,638,383,379$</span>
   </div>
 
   <div class="sub">
-    Available real balance
+    Available demo balance
   </div>
 
   <label>TikTok username</label>
@@ -224,7 +256,6 @@ button{
   <div class="card">
 
     <div class="row">
-
       <div>
         <div class="muted">Number of Coins</div>
 
@@ -233,7 +264,6 @@ button{
           <span id="coins">1</span>
         </div>
       </div>
-
     </div>
 
     <input
@@ -246,13 +276,11 @@ button{
     >
 
     <div class="row" style="margin-top:14px">
-
       <span class="muted">Total</span>
 
       <span class="total">
         <span id="total">1</span> Coins
       </span>
-
     </div>
 
     <button onclick="exchange()">
@@ -260,17 +288,16 @@ button{
     </button>
 
     <div id="success" class="success">
-      ✓ Successful — Real exchange completed
+      ✓ Successful — Demo exchange completed
     </div>
 
   </div>
 
   <div class="note">
-    REAL ONLY — real TikTok Coins or money are not transferred.
+    DEMO ONLY — real TikTok Coins or money are not transferred.
   </div>
 
 </div>
-
 
 <div id="modal" class="modal">
 
@@ -281,7 +308,7 @@ button{
     <h2>Successful!</h2>
 
     <p id="msg">
-      Real əməliyyatı uğurla tamamlandı.
+      Demo əməliyyatı uğurla tamamlandı.
     </p>
 
     <button onclick="closeModal()">
@@ -291,7 +318,6 @@ button{
   </div>
 
 </div>
-
 
 <script>
 
@@ -309,14 +335,10 @@ amount.addEventListener("input", function(){
     Number(amount.value) || 1
   );
 
-  coins.textContent =
-    n.toLocaleString();
-
-  total.textContent =
-    n.toLocaleString();
+  coins.textContent = n.toLocaleString();
+  total.textContent = n.toLocaleString();
 
 });
-
 
 function updateBalance(){
 
@@ -324,7 +346,6 @@ function updateBalance(){
     balance.toLocaleString() + "$";
 
 }
-
 
 function exchange(){
 
@@ -341,7 +362,7 @@ function exchange(){
   if(n > balance){
 
     document.getElementById("msg").textContent =
-      "Kifayət qədər real balans yoxdur.";
+      "Kifayət qədər demo balans yoxdur.";
 
     document.getElementById("modal").style.display =
       "flex";
@@ -357,7 +378,7 @@ function exchange(){
     username +
     " üçün " +
     n.toLocaleString() +
-    " real coin çıxıldı. Real balans: " +
+    " demo coin çıxıldı. Demo balans: " +
     balance.toLocaleString() +
     "$";
 
@@ -366,8 +387,8 @@ function exchange(){
 
   document.getElementById("modal").style.display =
     "flex";
-}
 
+}
 
 function closeModal(){
 
